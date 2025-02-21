@@ -1,14 +1,10 @@
 package multiblock.extend;
 
-import arc.Core;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
-import arc.graphics.g2d.TextureRegion;
 import arc.math.geom.Point2;
 import arc.struct.IntSeq;
 import arc.struct.Seq;
-import arc.util.Eachable;
-import mindustry.entities.units.BuildPlan;
 import mindustry.game.Team;
 import mindustry.gen.Building;
 import mindustry.graphics.Layer;
@@ -22,9 +18,8 @@ import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.meta.Stat;
 
 import static mindustry.Vars.*;
-import static mindustry.Vars.state;
 
-public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
+public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
     public int[] linkValues = {};
     public Seq<Point2> linkPos = new Seq<>();
     public IntSeq linkSize = new IntSeq();
@@ -70,11 +65,11 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
     }
 
     @Override
-    public void changePlacementPath(Seq<Point2> points, int rotation){
+    public void changePlacementPath(Seq<Point2> points, int rotation) {
         Placement.calculateNodes(points, this, rotation, (point, other) -> {
             if (rotation % 2 == 0) {
                 return Math.abs(point.x - other.x) <= getMaxSize(size, rotation).x;
-            }else{
+            } else {
                 return Math.abs(point.y - other.y) <= getMaxSize(size, rotation).y;
             }
         });
@@ -90,7 +85,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
         return linkSize;
     }
 
-    public class MultiBlockCrafterBuild extends GenericCrafterBuild implements MultiBlockEntity{
+    public class MultiBlockCrafterBuild extends GenericCrafterBuild implements MultiBlockEntity {
         public boolean linkCreated = false, linkValid = true;
         public Seq<Building> linkEntities;
         //ordered seq, target-source pair
@@ -106,15 +101,15 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
 
         @Override
         public void updateTile() {
-            if(isPayload()) return;
+            if (isPayload()) return;
 
-            if (!linkCreated){
+            if (!linkCreated) {
                 linkEntities = setLinkBuild(this, block, tile, team, size, rotation);
                 linkCreated = true;
                 updateLinkProximity();
             }
 
-            if (!linkValid){
+            if (!linkValid) {
                 linkEntities.each(Building::kill);
                 kill();
             }
@@ -124,7 +119,8 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
 
         @Override
         public boolean dump(Item todump) {
-            if (!block.hasItems || items.total() == 0 || linkProximityMap.size == 0 || (todump != null && !items.has(todump))) return false;
+            if (!block.hasItems || items.total() == 0 || linkProximityMap.size == 0 || (todump != null && !items.has(todump)))
+                return false;
             int dump = dumpIndex;
             for (int i = 0; i < linkProximityMap.size; i++) {
                 int idx = (i + dump) % linkProximityMap.size;
@@ -172,7 +168,8 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
                 if (target != null && target.block.hasLiquids && canDumpLiquid(target, liquid) && target.liquids != null) {
                     float ofract = target.liquids.get(liquid) / target.block.liquidCapacity;
                     float fract = liquids.get(liquid) / block.liquidCapacity;
-                    if (ofract < fract) transferLiquid(target, (fract - ofract) * block.liquidCapacity / scaling, liquid);
+                    if (ofract < fract)
+                        transferLiquid(target, (fract - ofract) * block.liquidCapacity / scaling, liquid);
                 }
             }
         }
@@ -200,14 +197,14 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
         }
 
         @Override
-        public void updateLinkProximity(){
+        public void updateLinkProximity() {
             if (linkEntities != null) {
                 linkProximityMap.clear();
                 //add link entity's proximity
-                for (Building link : linkEntities){
-                    for (Building linkProx : link.proximity){
-                        if (linkProx != this && !linkEntities.contains(linkProx)){
-                            if (checkValidPair(linkProx, link)){
+                for (Building link : linkEntities) {
+                    for (Building linkProx : link.proximity) {
+                        if (linkProx != this && !linkEntities.contains(linkProx)) {
+                            if (checkValidPair(linkProx, link)) {
                                 linkProximityMap.add(new Building[]{linkProx, link});
                             }
                         }
@@ -215,8 +212,8 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
                 }
 
                 //add self entity's proximity
-                for (Building prox : proximity){
-                    if (!linkEntities.contains(prox)){
+                for (Building prox : proximity) {
+                    if (!linkEntities.contains(prox)) {
                         if (checkValidPair(prox, this)) {
                             linkProximityMap.add(new Building[]{prox, this});
                         }
@@ -225,13 +222,13 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
             }
         }
 
-        public boolean checkValidPair(Building target, Building source){
-            for (Building[] pair : linkProximityMap){
+        public boolean checkValidPair(Building target, Building source) {
+            for (Building[] pair : linkProximityMap) {
                 Building pairTarget = pair[0];
                 Building pairSource = pair[1];
 
-                if (target == pairTarget){
-                    if (target.relativeTo(pairSource) == target.relativeTo(source)){
+                if (target == pairTarget) {
+                    if (target.relativeTo(pairSource) == target.relativeTo(source)) {
                         return false;
                     }
                 }
@@ -263,7 +260,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
         @Override
         public void drawTeam() {
             teamPos = world.tile(tileX() + teamOverlayPos(size, rotation).x, tileY() + teamOverlayPos(size, rotation).y);
-            if (teamPos != null){
+            if (teamPos != null) {
                 Draw.color(team.color);
                 Draw.rect("block-border", teamPos.worldx(), teamPos.worldy());
                 Draw.color();

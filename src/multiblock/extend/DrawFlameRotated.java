@@ -13,21 +13,22 @@ import mindustry.world.draw.DrawFlame;
 public class DrawFlameRotated extends DrawFlame {
     public float x, y;
 
-    public DrawFlameRotated(float x, float y, Color flameColor){
+    public DrawFlameRotated(float x, float y, Color flameColor) {
         super(flameColor);
         this.x = x;
         this.y = y;
     }
 
-    public DrawFlameRotated(Color flameColor){
+    public DrawFlameRotated(Color flameColor) {
         super(flameColor);
     }
 
-    public DrawFlameRotated(){}
+    public DrawFlameRotated() {
+    }
 
     @Override
-    public void draw(Building build){
-        if(build.warmup() > 0f && flameColor.a > 0.001f){
+    public void draw(Building build) {
+        if (build.warmup() > 0f && flameColor.a > 0.001f) {
             float g = 0.3f;
             float r = 0.06f;
             float cr = Mathf.random(0.1f);

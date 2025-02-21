@@ -11,7 +11,6 @@ import mindustry.world.Build;
 import mindustry.world.Tile;
 import multiblock.MultiBlockLib;
 
-
 import static mindustry.Vars.state;
 import static mindustry.Vars.world;
 
@@ -62,7 +61,7 @@ public interface MultiBlock {
             Point2 rotated = calculateRotatedPosition(p, size, s, tile.build.rotation);
             Tile t = world.tile(tile.x + rotated.x, tile.y + rotated.y);
             t.setBlock(MultiBlockLib.placeholderEntity[s - 1], tile.team(), 0);
-            PlaceholderBlock.PlaceholderBuild b = (PlaceholderBlock.PlaceholderBuild)t.build;
+            PlaceholderBlock.PlaceholderBuild b = (PlaceholderBlock.PlaceholderBuild) t.build;
             b.updateLink(tile);
         }
     }
@@ -80,7 +79,7 @@ public interface MultiBlock {
             } else {
                 t.setBlock(MultiBlockLib.linkEntityLiquid[s - 1], team, 0);
             }
-            LinkBlock.LinkBuild b = (LinkBlock.LinkBuild)t.build;
+            LinkBlock.LinkBuild b = (LinkBlock.LinkBuild) t.build;
             b.updateLink(building);
             out.add(b);
         }
