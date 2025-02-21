@@ -1,0 +1,61 @@
+{
+	"type": "MultiBlockCrafter",
+	"name": "example",
+	"description": "Example block with such layout:\n00\n00\n000\n00000\n00000",
+	"linkValues": [2, -1, 2, -1, 2, 2],
+	"size": 3,
+	"hasPower": true,
+	"hasLiquids": true,
+	"hasItems": true,
+	"craftTime": 30,
+	"itemCapacity": 20,
+	"liquidCapacity": 30,
+
+	"outputItem": { "item": "lead", "amount": 2},
+	"outputLiquid": {"liquid": "water", "amount": 0.2},
+	"consumes": {
+    	"power":1,
+		"items": {
+			"items": [
+				{ "item": "titanium", "amount": 1},
+				{ "item": "silicon", "amount": 2}
+			]
+		},
+    	"liquids": [
+    	    {"liquid": "cryofluid","amount":0.2}
+		]
+ 	},
+	"drawer": {
+		"type": "DrawMulti",
+		"drawers": [
+			{
+				"type": "DrawRegionRotated",
+				"suffix": "-bottom",
+				"oneSprite": true
+			},
+			{
+				"type": "DrawLiquidRegionRotated",
+				"suffix": "-liquid-water",
+				"drawLiquid": "water"
+			},
+			{
+				"type": "DrawLiquidRegionRotated",
+				"suffix": "-liquid-cryofluid",
+				"drawLiquid": "cryofluid"
+			},
+			{
+				"type": "DrawRegionRotated",
+				"suffix": "-rot"
+			},
+			{
+				"type": "DrawFlameRotated",
+				"x": 0,
+				"y": 0
+			}
+		]
+	},
+	"requirements": [
+		{ "item": "copper", "amount": 30 }
+	],
+	"category": "crafting"
+}
