@@ -138,7 +138,7 @@ tasks.register('debugBE', JavaExec) {
 tasks.register('deploy', Jar) {
     dependsOn jarAndroid
     dependsOn jar
-    archiveFileName = "MultiBlockLibMod.jar"
+    archiveFileName = "MultiBlockLib.jar"
 
     from { [zipTree("$buildDir/libs/MultiBlockLibModDesktop.jar"), zipTree("$buildDir/libs/MultiBlockLibModAndroid.jar")] }
 
