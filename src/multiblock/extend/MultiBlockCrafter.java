@@ -1,10 +1,14 @@
 package multiblock.extend;
 
+import arc.Core;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
+import arc.graphics.g2d.TextureRegion;
 import arc.math.geom.Point2;
 import arc.struct.IntSeq;
 import arc.struct.Seq;
+import arc.util.Eachable;
+import mindustry.entities.units.BuildPlan;
 import mindustry.game.Team;
 import mindustry.gen.Building;
 import mindustry.graphics.Layer;
@@ -41,6 +45,11 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock{
     public void init() {
         super.init();
         addLink(linkValues);
+
+        //always set those, these are not supposed to be changed
+        rotateDraw = true;
+        quickRotate = false;
+        allowDiagonal = false;
     }
 
     @Override
