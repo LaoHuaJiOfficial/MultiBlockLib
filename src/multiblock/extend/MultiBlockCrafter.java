@@ -6,6 +6,7 @@ import arc.math.Mathf;
 import arc.math.geom.Point2;
 import arc.struct.IntSeq;
 import arc.struct.Seq;
+import arc.util.Eachable;
 import arc.util.Log;
 import arc.util.Nullable;
 import mindustry.entities.units.BuildPlan;
@@ -31,6 +32,8 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
     public IntSeq linkSize = new IntSeq();
 
     public boolean canMirror = false;
+    //for flip usage if no mirror block
+    public int[] rotations = {0, 1, 2, 3, 0, 1, 2, 3};
 
     public MultiBlockCrafter(String name) {
         super(name);
@@ -66,9 +69,13 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
         quickRotate = false;
         allowDiagonal = false;
 
-        if (isMirror()){
-            alwaysUnlocked = true;
-        }
+        //actually this cause some issues when unexpectedly placed in editor so no
+        inEditor = false;
+    }
+
+    @Override
+    public void drawShadow(Tile tile) {
+        super.drawShadow(tile);
     }
 
     @Override
@@ -122,21 +129,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
                 }
                 req.block = mirrorBlock();
             }else {
-                if (x){
-                    switch (req.rotation){
-                        case 1 -> req.rotation = 0;
-                        case 2 -> req.rotation = 3;
-                        case 3 -> req.rotation = 2;
-                        default -> req.rotation = 1;
-                    }
-                }else {
-                    switch (req.rotation){
-                        case 1 -> req.rotation = 2;
-                        case 2 -> req.rotation = 1;
-                        case 3 -> req.rotation = 0;
-                        default -> req.rotation = 3;
-                    }
-                }
+                req.rotation = rotations[req.rotation + Mathf.sign(!x) * 4];
             }
         }else {
             super.flipRotation(req, x);
@@ -163,7 +156,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
 
             if (!linkCreated) {
                 linkEntities = setLinkBuild(this, block, tile, team, size, rotation);
-                linkCreated = true;
+                //extra check to make sure all link entities are created
                 updateLinkProximity();
             }
 

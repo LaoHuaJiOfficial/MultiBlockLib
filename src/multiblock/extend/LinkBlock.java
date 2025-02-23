@@ -19,6 +19,8 @@ import mindustry.world.Tile;
 import mindustry.world.blocks.payloads.Payload;
 import mindustry.world.consumers.Consume;
 import mindustry.world.meta.BuildVisibility;
+import mindustry.world.modules.ItemModule;
+import mindustry.world.modules.LiquidModule;
 
 /**
  * Inner building that are linked to a specific building.
@@ -97,6 +99,10 @@ public class LinkBlock extends Block {
                 linkBuild = null;
                 tile.remove();
             }
+
+            //create empty module to avoid null
+            if (items == null) items = new ItemModule();
+            if (liquids == null) liquids = new LiquidModule();
         }
 
         @Override
