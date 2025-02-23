@@ -31,6 +31,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
     public IntSeq linkSize = new IntSeq();
 
     public boolean canMirror = false;
+    public int[] rotations = {0, 1, 2, 3, 0, 1, 2, 3};
 
     public MultiBlockCrafter(String name) {
         super(name);
@@ -65,6 +66,10 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
         rotateDraw = true;
         quickRotate = false;
         allowDiagonal = false;
+
+        //always required due to Tile#getFlammability, in this case anuke sucks for this
+        hasItems = true;
+        hasLiquids = true;
 
         if (isMirror()){
             alwaysUnlocked = true;
@@ -122,21 +127,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
                 }
                 req.block = mirrorBlock();
             }else {
-                if (x){
-                    switch (req.rotation){
-                        case 1 -> req.rotation = 0;
-                        case 2 -> req.rotation = 3;
-                        case 3 -> req.rotation = 2;
-                        default -> req.rotation = 1;
-                    }
-                }else {
-                    switch (req.rotation){
-                        case 1 -> req.rotation = 2;
-                        case 2 -> req.rotation = 1;
-                        case 3 -> req.rotation = 0;
-                        default -> req.rotation = 3;
-                    }
-                }
+                req.rotation = rotations[req.rotation + Mathf.sign(!x) * 4];
             }
         }else {
             super.flipRotation(req, x);
