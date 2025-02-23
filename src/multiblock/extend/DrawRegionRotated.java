@@ -4,6 +4,7 @@ import arc.Core;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.util.Eachable;
+import arc.util.Tmp;
 import mindustry.entities.units.BuildPlan;
 import mindustry.gen.Building;
 import mindustry.world.Block;
@@ -13,6 +14,7 @@ public class DrawRegionRotated extends DrawBlock {
     public TextureRegion[] region;
     public boolean oneSprite = false;
     public String suffix = "";
+    public int x = 0, y = 0;
     /**
      * Any number <=0 disables layer changes.
      */
@@ -29,20 +31,22 @@ public class DrawRegionRotated extends DrawBlock {
     public void draw(Building build) {
         float z = Draw.z();
         if (layer > 0) Draw.z(layer);
+        Tmp.v1.set(x, y).rotate(build.rotdeg());
         if (oneSprite) {
-            Draw.rect(region[build.rotation], build.x, build.y, build.rotdeg());
+            Draw.rect(region[build.rotation], Tmp.v1.x + build.x, Tmp.v1.y + build.y, build.rotdeg());
         } else {
-            Draw.rect(region[build.rotation], build.x, build.y);
+            Draw.rect(region[build.rotation], Tmp.v1.x + build.x, Tmp.v1.y + build.y);
         }
         Draw.z(z);
     }
 
     @Override
     public void drawPlan(Block block, BuildPlan plan, Eachable<BuildPlan> list) {
+        Tmp.v1.set(x, y).rotate(plan.rotation * 90);
         if (oneSprite) {
-            Draw.rect(region[plan.rotation], plan.drawx(), plan.drawy(), plan.rotation * 90);
+            Draw.rect(region[plan.rotation], Tmp.v1.x + plan.drawx(), Tmp.v1.y + plan.drawy(), plan.rotation * 90);
         } else {
-            Draw.rect(region[plan.rotation], plan.drawx(), plan.drawy());
+            Draw.rect(region[plan.rotation], Tmp.v1.x + plan.drawx(), Tmp.v1.y + plan.drawy());
         }
     }
 

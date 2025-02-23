@@ -20,6 +20,10 @@ public interface MultiBlock {
 
     IntSeq linkBlockSize();
 
+    Block mirrorBlock();
+
+    boolean isMirror();
+
     default Point2 calculateRotatedPosition(Point2 pos, int blockSize, int linkSize, int rotation) {
         int shift = (blockSize + 1) % 2;
         int offset = (linkSize + 1) % 2;
@@ -86,30 +90,42 @@ public interface MultiBlock {
         return out;
     }
 
-    default Point2 teamOverlayPos(int size, int rotation) {
-        return calculateOverlayPos(size, rotation, (xr, yr) -> xr + yr < size);
-    }
+    default Point2 teamOverlayPos(int size, int rotation){
+        Point2 out = leftBottomPos(size);
 
-    default Point2 statusOverlayPos(int size, int rotation) {
-        return calculateOverlayPos(size, rotation, (xr, yr) -> xr - yr > size);
-    }
-
-    // Helper method to calculate overlay positions based on conditions
-    default Point2 calculateOverlayPos(int size, int rotation, Boolf2<Integer, Integer> condition) {
-        int shift = (size + 1) % 2;
-        int value = -size / 2 + shift;
-
-        Point2 out = new Point2(value, value);
-
-        for (int i = 0; i < linkBlockPos().size; i++) {
+        for (int i = 0; i < linkBlockPos().size; i++){
             Point2 p = linkBlockPos().get(i);
             int s = linkBlockSize().get(i);
             Point2 rotated = calculateRotatedPosition(p, size, s, rotation);
-            if (condition.get(rotated.x, rotated.y)) {
-                out.set(rotated.x, rotated.y);
-            }
+            Point2 lb = leftBottomPos(s).add(rotated);
+
+            if ((lb.x + lb.y) < (out.x + out.y)) out.set(lb.x, lb.y);
         }
         return out;
+    }
+
+    default Point2 statusOverlayPos(int size, int rotation){
+        Point2 out = rightBottomPos(size);
+
+        for (int i = 0; i < linkBlockPos().size; i++){
+            Point2 p = linkBlockPos().get(i);
+            int s = linkBlockSize().get(i);
+            Point2 rotated = calculateRotatedPosition(p, size, s, rotation);
+            Point2 rb = rightBottomPos(s).add(rotated);
+
+            if ((rb.x - rb.y) > (out.x - out.y)) out.set(rb.x, rb.y);
+        }
+        return out;
+    }
+
+    default Point2 leftBottomPos(int size){
+        int shift = (size + 1) % 2;
+        return new Point2(-size/2 + shift, -size/2 + shift);
+    }
+
+    default Point2 rightBottomPos(int size){
+        int shift = (size + 1) % 2;
+        return new Point2(size/2, -size/2 + shift);
     }
 
     default Point2 getMaxSize(int size, int rotation) {

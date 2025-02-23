@@ -2,9 +2,13 @@ package multiblock.extend;
 
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
+import arc.math.Mathf;
 import arc.math.geom.Point2;
 import arc.struct.IntSeq;
 import arc.struct.Seq;
+import arc.util.Log;
+import arc.util.Nullable;
+import mindustry.entities.units.BuildPlan;
 import mindustry.game.Team;
 import mindustry.gen.Building;
 import mindustry.graphics.Layer;
@@ -15,14 +19,18 @@ import mindustry.type.Liquid;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.meta.BuildVisibility;
 import mindustry.world.meta.Stat;
 
 import static mindustry.Vars.*;
 
 public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
+    //link positions
     public int[] linkValues = {};
     public Seq<Point2> linkPos = new Seq<>();
     public IntSeq linkSize = new IntSeq();
+
+    public boolean canMirror = false;
 
     public MultiBlockCrafter(String name) {
         super(name);
@@ -37,6 +45,18 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
     }
 
     @Override
+    public boolean isMirror() {
+        return name.endsWith("-mirror");
+    }
+
+    @Override
+    @Nullable
+    public Block mirrorBlock(){
+        if (isMirror()) return content.block(name.replace("-mirror", ""));
+        else return content.block(name + "-mirror");
+    }
+
+    @Override
     public void init() {
         super.init();
         addLink(linkValues);
@@ -45,6 +65,10 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
         rotateDraw = true;
         quickRotate = false;
         allowDiagonal = false;
+
+        if (isMirror()){
+            alwaysUnlocked = true;
+        }
     }
 
     @Override
@@ -83,6 +107,40 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
     @Override
     public IntSeq linkBlockSize() {
         return linkSize;
+    }
+
+    @Override
+    public void flipRotation(BuildPlan req, boolean x){
+        if (canMirror) {
+            if (mirrorBlock() != null){
+                if (x){
+                    if (req.rotation == 1) req.rotation = 3;
+                    if (req.rotation == 3) req.rotation = 1;
+                }else {
+                    if (req.rotation == 0) req.rotation = 2;
+                    if (req.rotation == 2) req.rotation = 0;
+                }
+                req.block = mirrorBlock();
+            }else {
+                if (x){
+                    switch (req.rotation){
+                        case 1 -> req.rotation = 0;
+                        case 2 -> req.rotation = 3;
+                        case 3 -> req.rotation = 2;
+                        default -> req.rotation = 1;
+                    }
+                }else {
+                    switch (req.rotation){
+                        case 1 -> req.rotation = 2;
+                        case 2 -> req.rotation = 1;
+                        case 3 -> req.rotation = 0;
+                        default -> req.rotation = 3;
+                    }
+                }
+            }
+        }else {
+            super.flipRotation(req, x);
+        }
     }
 
     public class MultiBlockCrafterBuild extends GenericCrafterBuild implements MultiBlockEntity {

@@ -99,8 +99,15 @@ tasks.register('copyTo', Copy) {
     rename { 'MultiBlockLibModJar.jar' }
 }
 
+tasks.register('zipJsonMod', Zip) {
+    from 'E:/project/MindustryModDevLib/MultiBlockLib/template'
+    destinationDirectory = file('C:/Users/LaoHuaJi/AppData/Roaming/Mindustry/mods')
+    archiveFileName = 'Nindustry.zip'
+}
+
 tasks.register('debugMobile', JavaExec) {
     dependsOn classes
+    dependsOn 'zipJsonMod'
     dependsOn 'copyTo'
 
     main = "-jar"
@@ -113,6 +120,7 @@ tasks.register('debugMobile', JavaExec) {
 
 tasks.register('debugDesktop', JavaExec) {
     dependsOn classes
+    dependsOn 'zipJsonMod'
     dependsOn 'copyTo'
 
     main = "-jar"
@@ -120,11 +128,11 @@ tasks.register('debugDesktop', JavaExec) {
             "E:/project/MindustryModDevLib/Mindustry7.0.jar",
             "-debug",
     ]
-
 }
 
 tasks.register('debugBE', JavaExec) {
     dependsOn classes
+    dependsOn 'zipJsonMod'
     dependsOn 'copyTo'
 
     main = "-jar"
@@ -132,8 +140,8 @@ tasks.register('debugBE', JavaExec) {
             "E:/project/MindustryModDevLib/Mindustry-BE.jar",
             "-debug",
     ]
-
 }
+
 
 tasks.register('deploy', Jar) {
     dependsOn jarAndroid
