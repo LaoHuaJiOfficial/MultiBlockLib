@@ -3,7 +3,7 @@
 
   "canMirror": true,
   "linkValues": [2, 0, 1, 2, 1, 1, 0, 2, 1, 1, 2, 1],
-  "rotations": [0, 3, 2, 1, 2, 1, 0, 3],
+  "rotations": [1, 0, 3, 2, 3, 2, 1, 0],
   "size": 2,
 
   "category": "crafting",
@@ -13,8 +13,6 @@
   ],
 
   "hasPower": false,
-  "hasLiquids": false,
-  "hasItems": true,
 
   "craftTime": 45,
   "outputItem": { "item": "graphite", "amount": 1 },

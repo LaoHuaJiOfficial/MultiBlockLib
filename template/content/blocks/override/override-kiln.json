@@ -1,0 +1,42 @@
+{
+  "type": "MultiBlockCrafter",
+
+  "canMirror": true,
+  "linkValues": [1, 0, 1, 1, 1, 1, 0, 1, 1, -1, 0, 1, -1, -1, 1, 0, -1, 1],
+  "rotations": [1, 0, 1, 0, 1, 0, 1, 0],
+  "size": 1,
+
+  "category": "crafting",
+  "requirements": [
+    { "item": "copper", "amount": 90 },
+    { "item": "graphite", "amount": 45 },
+    { "item": "lead", "amount": 45 }
+  ],
+
+  "hasPower": true,
+
+  "craftTime": 30,
+  "outputItem": { "item": "metaglass", "amount": 2 },
+  "consumes": {
+    "power": 1,
+    "items": [
+      { "item": "lead", "amount": 2 },
+      { "item": "sand", "amount": 2 }
+    ]
+  },
+
+  "craftEffect": "smeltsmoke",
+
+  "ambientSound": "smelter",
+  "ambientSoundVolume": 0.07,
+
+  "drawer": {
+    "type": "DrawMulti",
+    "drawers": [
+      {
+        "type": "DrawRegionCenterSymmetry",
+        "suffix": "-rot"
+      }
+    ]
+  }
+}

@@ -4,6 +4,6 @@
  "description": "A template which used Multi-Block Library.\nGives example of how to create a Multi-Block with json.",
  "minGameVersion": 146,
  "author": "LaoHuaJi/酪桦姬",
- "version": "0.2",
+ "version": "0.3",
  "dependencies":["multi-block-lib"]
 }

@@ -127,7 +127,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
                 }
                 req.block = mirrorBlock();
             }else {
-                req.rotation = rotations[req.rotation + Mathf.sign(!x) * 4];
+                req.rotation = rotations[req.rotation + (x?0:4)];
             }
         }else {
             super.flipRotation(req, x);

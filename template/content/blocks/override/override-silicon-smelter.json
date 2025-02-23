@@ -13,13 +13,11 @@
   ],
 
   "hasPower": true,
-  "hasLiquids": false,
-  "hasItems": true,
 
   "craftTime": 40,
   "outputItem": { "item": "silicon", "amount": 2 },
   "consumes": {
-    "power": 0.5,
+    "power": 1,
     "items": [
       { "item": "coal", "amount": 2 },
       { "item": "sand", "amount": 4 }

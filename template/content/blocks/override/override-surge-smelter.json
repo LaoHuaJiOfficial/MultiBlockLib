@@ -1,0 +1,50 @@
+{
+  "type": "MultiBlockCrafter",
+
+  "canMirror": true,
+  "linkValues": [
+    2, 0, 1, 2, 1, 1, 2, 2, 1,
+    0, 2, 1, 1, 2, 1,
+    -2, 0, 1, -2, -1, 1, -2, -2, 1,
+    -1, -2, 1, 0, -2, 1
+  ],
+  "rotations": [1, 0, 1, 0, 1, 0, 1, 0],
+  "size": 3,
+
+  "category": "crafting",
+  "requirements": [
+    { "item": "silicon", "amount": 150 },
+    { "item": "lead", "amount": 150 },
+    { "item": "thorium", "amount": 120 }
+  ],
+
+  "hasPower": true,
+  "itemCapacity": 20,
+
+  "craftTime": 60,
+  "outputItem": { "item": "surge-alloy", "amount": 2 },
+  "consumes": {
+    "power": 8,
+    "items": [
+      { "item": "copper", "amount": 5 },
+      { "item": "lead", "amount": 6 },
+      { "item": "titanium", "amount": 3 },
+      { "item": "silicon", "amount": 4 }
+    ]
+  },
+
+  "craftEffect": "smeltsmoke",
+
+  "ambientSound": "smelter",
+  "ambientSoundVolume": 0.07,
+
+  "drawer": {
+    "type": "DrawMulti",
+    "drawers": [
+      {
+        "type": "DrawRegionCenterSymmetry",
+        "suffix": "-rot"
+      }
+    ]
+  }
+}
