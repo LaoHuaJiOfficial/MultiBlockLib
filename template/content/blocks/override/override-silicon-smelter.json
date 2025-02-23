@@ -1,0 +1,66 @@
+{
+  "type": "MultiBlockCrafter",
+
+  "canMirror": false,
+  "linkValues": [2, 0, 1, 2, 1, 1, -1, 0, 1, -1, 1, 1],
+  "size": 2,
+
+  "category": "crafting",
+  "requirements": [
+    { "item": "copper", "amount": 50 },
+    { "item": "lead", "amount": 40 }
+  ],
+
+  "hasPower": true,
+  "hasLiquids": false,
+  "hasItems": true,
+
+  "craftTime": 40,
+  "outputItem": { "item": "silicon", "amount": 2 },
+  "consumes": {
+    "power": 0.5,
+    "items": [
+      { "item": "coal", "amount": 2 },
+      { "item": "sand", "amount": 4 }
+    ]
+  },
+
+  "craftEffect": "smeltsmoke",
+
+  "ambientSound": "smelter",
+  "ambientSoundVolume": 0.07,
+
+  "drawer": {
+    "type": "DrawMulti",
+    "drawers": [
+      {
+        "type": "DrawRegionCenterSymmetry",
+        "suffix": "-rot"
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-0",
+        "x": 0,
+        "y": 0,
+        "flameX": 0,
+        "flameY": 0
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-1",
+        "x": 0,
+        "y": 0,
+        "flameX": -8,
+        "flameY": 0
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-2",
+        "x": 0,
+        "y": 0,
+        "flameX": 8,
+        "flameY": 0
+      }
+    ]
+  }
+}

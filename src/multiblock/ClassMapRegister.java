@@ -1,10 +1,7 @@
 package multiblock;
 
 import mindustry.mod.ClassMap;
-import multiblock.extend.DrawFlameRotated;
-import multiblock.extend.DrawLiquidRegionRotated;
-import multiblock.extend.DrawRegionRotated;
-import multiblock.extend.MultiBlockCrafter;
+import multiblock.extend.*;
 
 public class ClassMapRegister {
     public static void load() {
@@ -12,6 +9,7 @@ public class ClassMapRegister {
 
         ClassMap.classes.put("DrawFlameRotated", DrawFlameRotated.class);
         ClassMap.classes.put("DrawLiquidRegionRotated", DrawLiquidRegionRotated.class);
+        ClassMap.classes.put("DrawRegionCenterSymmetry", DrawRegionCenterSymmetry.class);
         ClassMap.classes.put("DrawRegionRotated", DrawRegionRotated.class);
     }
 }

@@ -16,10 +16,10 @@
   "hasItems": true,
 
   "craftTime": 45,
-  "outputItem": { "item": "graphite", "amount": 1},
+  "outputItem": { "item": "graphite", "amount": 1 },
   "consumes": {
     "items": [
-      { "item": "coal", "amount": 2}
+      { "item": "coal", "amount": 2 }
     ]
   },
 
