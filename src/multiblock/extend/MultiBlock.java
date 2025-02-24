@@ -1,6 +1,5 @@
 package multiblock.extend;
 
-import arc.func.Boolf2;
 import arc.math.geom.Point2;
 import arc.struct.IntSeq;
 import arc.struct.Seq;

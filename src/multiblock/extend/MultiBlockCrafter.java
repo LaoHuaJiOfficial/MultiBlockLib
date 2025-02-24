@@ -2,11 +2,9 @@ package multiblock.extend;
 
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
-import arc.math.Mathf;
 import arc.math.geom.Point2;
 import arc.struct.IntSeq;
 import arc.struct.Seq;
-import arc.util.Log;
 import arc.util.Nullable;
 import mindustry.entities.units.BuildPlan;
 import mindustry.game.Team;
@@ -19,7 +17,6 @@ import mindustry.type.Liquid;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 import mindustry.world.blocks.production.GenericCrafter;
-import mindustry.world.meta.BuildVisibility;
 import mindustry.world.meta.Stat;
 
 import static mindustry.Vars.*;
@@ -71,6 +68,9 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
         hasItems = true;
         hasLiquids = true;
 
+        //current no support and i dont want things being disaster
+        outputLiquids = null;
+
         if (isMirror()){
             alwaysUnlocked = true;
         }
@@ -102,6 +102,14 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
                 return Math.abs(point.y - other.y) <= getMaxSize(size, rotation).y;
             }
         });
+    }
+
+    @Override
+    public void setBars() {
+        super.setBars();
+        if (outputLiquid == null && (outputLiquids == null || outputLiquids.length == 0)) {
+            removeBar("liquid");
+        }
     }
 
     @Override
