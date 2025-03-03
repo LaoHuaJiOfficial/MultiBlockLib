@@ -1,10 +1,10 @@
 {
   "type": "MultiBlockCrafter",
 
-  "canMirror": true,
-  "linkValues": [1, 0, 1, 1, 1, 1, 0, 1, 1, -1, 0, 1, -1, -1, 1, 0, -1, 1],
-  "rotations": [1, 0, 1, 0, 1, 0, 1, 0],
-  "size": 1,
+  "canMirror": false,
+  "linkValues": [2, 0, 1, 2, 1, 1, -1, 0, 1, -1, 1, 1],
+  "rotations": [0, 1, 2, 3, 0, 1, 2, 3],
+  "size": 2,
 
   "category": "crafting",
   "requirements": [
@@ -36,6 +36,38 @@
       {
         "type": "DrawRegionCenterSymmetry",
         "suffix": "-rot"
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-1",
+        "flameRadius": 2.2,
+        "flameRadiusIn": 1.5,
+        "x": 0,
+        "y": 0,
+        "flameX": -8,
+        "flameY": 0
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-2",
+        "flameRadius": 2.2,
+        "flameRadiusIn": 1.5,
+        "x": 0,
+        "y": 0,
+        "flameX": 8,
+        "flameY": 0
+      },
+      {
+        "type": "DrawRegionCenterSymmetry",
+        "suffix": "-top-rot"
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-0",
+        "x": 0,
+        "y": 0,
+        "flameX": 0,
+        "flameY": 0
       }
     ]
   }

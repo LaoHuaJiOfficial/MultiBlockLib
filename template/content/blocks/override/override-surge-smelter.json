@@ -44,6 +44,40 @@
       {
         "type": "DrawRegionCenterSymmetry",
         "suffix": "-rot"
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-1",
+        "flameRadius": 3,
+        "flameRadiusIn": 2.1,
+        "x": 0,
+        "y": 0,
+        "flameX": 8,
+        "flameY": 8
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-2",
+        "flameRadius": 3,
+        "flameRadiusIn": 2.1,
+        "x": 0,
+        "y": 0,
+        "flameX": -8,
+        "flameY": -8
+      },
+      {
+        "type": "DrawRegion",
+        "suffix": "-top"
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-0",
+        "flameRadius": 3.7,
+        "flameRadiusIn": 2.8,
+        "x": 0,
+        "y": 0,
+        "flameX": 0,
+        "flameY": 0
       }
     ]
   }

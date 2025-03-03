@@ -38,15 +38,9 @@
       },
       {
         "type": "DrawFlameRotated",
-        "suffix": "-top-0",
-        "x": 0,
-        "y": 0,
-        "flameX": 0,
-        "flameY": 0
-      },
-      {
-        "type": "DrawFlameRotated",
         "suffix": "-top-1",
+        "flameRadius": 2.2,
+        "flameRadiusIn": 1.5,
         "x": 0,
         "y": 0,
         "flameX": -8,
@@ -55,9 +49,23 @@
       {
         "type": "DrawFlameRotated",
         "suffix": "-top-2",
+        "flameRadius": 2.2,
+        "flameRadiusIn": 1.5,
         "x": 0,
         "y": 0,
         "flameX": 8,
+        "flameY": 0
+      },
+      {
+        "type": "DrawRegionCenterSymmetry",
+        "suffix": "-top-rot"
+      },
+      {
+        "type": "DrawFlameRotated",
+        "suffix": "-top-0",
+        "x": 0,
+        "y": 0,
+        "flameX": 0,
         "flameY": 0
       }
     ]

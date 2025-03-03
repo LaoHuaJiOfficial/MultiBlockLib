@@ -1,0 +1,56 @@
+{
+  "type": "MultiBlockCrafter",
+
+  "canMirror": true,
+  "linkValues": [
+    2, 0, 1, 2, 1, 1,
+    1, -1, 1, 2, -1, 1,
+    -1, 0, 1, -1, 1, 1,
+    -1, 2, 1, 0, 2, 1
+  ],
+  "rotations": [1, 0, 1, 0, 1, 0, 1, 0],
+  "size": 2,
+
+  "category": "crafting",
+  "requirements": [
+    { "item": "lead", "amount": 65 },
+    { "item": "silicon", "amount": 40 },
+    { "item": "titanium", "amount": 60 }
+  ],
+
+  "hasPower": true,
+  "outputsLiquid": true,
+
+  "craftTime": 120,
+
+  "outputLiquid": {"liquid": "cryofluid", "amount": 0.75 },
+  "consumes": {
+    "power": 3,
+    "items": [{ "item": "titanium", "amount": 5 }],
+    "liquid": {"liquid": "water", "amount": 0.75}
+  },
+
+  "drawer": {
+    "type": "DrawMulti",
+    "drawers": [
+      {
+        "type": "DrawRegionCenterSymmetry",
+        "suffix": "-rot"
+      },
+      {
+        "type": "DrawLiquidRegionRotated",
+        "suffix": "-liquid-water",
+        "drawLiquid": "water"
+      },
+      {
+        "type": "DrawLiquidRegionRotated",
+        "suffix": "-liquid-cryofluid",
+        "drawLiquid": "cryofluid"
+      },
+      {
+        "type": "DrawRegionCenterSymmetry",
+        "suffix": "-top-rot"
+      }
+    ]
+  }
+}

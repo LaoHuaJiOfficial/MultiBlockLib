@@ -69,7 +69,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
         hasLiquids = true;
 
         //current no support and i dont want things being disaster
-        outputLiquids = null;
+        //outputLiquids = null;
 
         if (isMirror()){
             alwaysUnlocked = true;
