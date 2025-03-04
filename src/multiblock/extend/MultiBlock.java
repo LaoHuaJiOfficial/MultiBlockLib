@@ -13,6 +13,7 @@ import multiblock.MultiBlockLib;
 import static mindustry.Vars.state;
 import static mindustry.Vars.world;
 
+//i guess some method here are terrible and should use sizeOffset
 public interface MultiBlock {
 
     Seq<Point2> linkBlockPos();
@@ -87,6 +88,33 @@ public interface MultiBlock {
             out.add(b);
         }
         return out;
+    }
+
+    default Seq<Tile> linkTiles(int x, int y, int size, int rotation){
+        Seq<Tile> tiles = new Seq<>();
+        Point2 lb = leftBottomPos(size);
+        for (int tx = 0; tx < size; tx++) {
+            for (int ty = 0; ty < size; ty++) {
+                Tile other = world.tile(x + tx + lb.x, y + ty + lb.y);
+                if(other != null) tiles.add(other);
+            }
+        }
+
+        for (int i = 0; i < linkBlockPos().size; i++){
+            Point2 p = linkBlockPos().get(i);
+            int s = linkBlockSize().get(i);
+            Point2 rotated = calculateRotatedPosition(p, size, s, rotation);
+            Point2 lb2 = leftBottomPos(s).add(rotated);
+
+            for (int tx = 0; tx < s; tx++) {
+                for (int ty = 0; ty < s; ty++) {
+                    Tile other = world.tile(x + tx + lb2.x, y + ty + lb2.y);
+                    if(other != null) tiles.add(other);
+                }
+            }
+        }
+
+        return tiles;
     }
 
     default Point2 teamOverlayPos(int size, int rotation){

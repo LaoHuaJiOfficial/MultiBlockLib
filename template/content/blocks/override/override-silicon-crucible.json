@@ -1,0 +1,50 @@
+{
+  "type": "MultiBlock-AttributeCrafter",
+
+  "canMirror": false,
+  "linkValues": [
+    2, 0, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 0, 2, 1,
+    -1, 1, 1, -1, 0, 1, -1, -1, 1, 0, -1, 1, 1, -1, 1
+  ],
+  "rotations": [0, 1, 2, 3, 0, 1, 2, 3],
+  "size": 2,
+
+  "category": "crafting",
+  "requirements": [
+    { "item": "titanium", "amount": 150 },
+    { "item": "metaglass", "amount": 100 },
+    { "item": "plastanium", "amount": 50 },
+    { "item": "silicon", "amount": 75 }
+  ],
+
+  "hasPower": true,
+
+  "itemCapacity": 45,
+  "boostScale": 0.15,
+
+  "craftTime": 90,
+  "outputItem": { "item": "silicon", "amount": 16 },
+  "consumes": {
+    "power": 6,
+    "items": [
+      { "item": "coal", "amount": 8 },
+      { "item": "sand", "amount": 12 },
+      { "item": "pyratite", "amount": 2 }
+    ]
+  },
+
+  "craftEffect": "smeltsmoke",
+
+  "ambientSound": "smelter",
+  "ambientSoundVolume": 0.07,
+
+  "drawer": {
+    "type": "DrawMulti",
+    "drawers": [
+      {
+        "type": "DrawRegionCenterSymmetry",
+        "suffix": "-rot"
+      }
+    ]
+  }
+}

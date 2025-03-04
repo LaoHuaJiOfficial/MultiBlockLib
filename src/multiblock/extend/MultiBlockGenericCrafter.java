@@ -21,7 +21,7 @@ import mindustry.world.meta.Stat;
 
 import static mindustry.Vars.*;
 
-public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
+public class MultiBlockGenericCrafter extends GenericCrafter implements MultiBlock {
     //link positions
     public int[] linkValues = {};
     public Seq<Point2> linkPos = new Seq<>();
@@ -30,7 +30,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
     public boolean canMirror = false;
     public int[] rotations = {0, 1, 2, 3, 0, 1, 2, 3};
 
-    public MultiBlockCrafter(String name) {
+    public MultiBlockGenericCrafter(String name) {
         super(name);
 
         hasItems = true;
@@ -151,7 +151,7 @@ public class MultiBlockCrafter extends GenericCrafter implements MultiBlock {
         public Tile teamPos, statusPos;
 
         @Override
-        public void created() {
+        public void created(){
             super.created();
             linkProximityMap = new Seq<>();
         }

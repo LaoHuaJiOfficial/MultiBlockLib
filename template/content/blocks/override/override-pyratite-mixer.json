@@ -1,0 +1,31 @@
+{
+  "type": "MultiBlock-GenericCrafter",
+
+  "canMirror": false,
+  "linkValues": [2, 0, 1, 2, 1, 1, -1, 0, 1, -1, 1, 1],
+  "rotations": [0, 1, 2, 3, 0, 1, 2, 3],
+  "size": 2,
+
+  "category": "crafting",
+  "requirements": [
+    { "item": "copper", "amount": 80 },
+    { "item": "lead", "amount": 45 }
+  ],
+
+  "hasPower": true,
+
+  "outputItem": { "item": "pyratite", "amount": 2 },
+  "consumes": {
+    "power": 0.3,
+    "items": [
+      { "item": "coal", "amount": 2 },
+      { "item": "lead", "amount": 3 },
+      { "item": "sand", "amount": 3 }
+    ]
+  },
+
+  "drawer": {
+    "type": "DrawRegionCenterSymmetry",
+    "suffix": "-rot"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "type": "MultiBlockCrafter",
+  "type": "MultiBlock-GenericCrafter",
 
   "canMirror": false,
   "linkValues": [2, 0, 1, 2, 1, 1, -1, 0, 1, -1, 1, 1],

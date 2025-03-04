@@ -1,0 +1,30 @@
+{
+  "type": "MultiBlock-GenericCrafter",
+
+  "canMirror": false,
+  "linkValues": [2, 0, 1, 2, 1, 1, -1, 0, 1, -1, 1, 1],
+  "rotations": [0, 1, 2, 3, 0, 1, 2, 3],
+  "size": 2,
+
+  "category": "crafting",
+  "requirements": [
+    { "item": "lead", "amount": 45 },
+    { "item": "titanium", "amount": 35 }
+  ],
+
+  "hasPower": true,
+
+  "outputItem": { "item": "blast-compound", "amount": 2 },
+  "consumes": {
+    "power": 0.6,
+    "items": [
+      { "item": "pyratite", "amount": 2 },
+      { "item": "spore-pod", "amount": 3 }
+    ]
+  },
+
+  "drawer": {
+    "type": "DrawRegionCenterSymmetry",
+    "suffix": "-rot"
+  }
+}
