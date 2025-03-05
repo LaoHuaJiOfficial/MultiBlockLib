@@ -1,12 +1,12 @@
 {
   "type": "MultiBlock-AttributeCrafter",
 
-  "canMirror": false,
+  "canMirror": true,
   "linkValues": [
     2, 0, 1, 2, 1, 1, 2, 2, 1, 1, 2, 1, 0, 2, 1,
     -1, 1, 1, -1, 0, 1, -1, -1, 1, 0, -1, 1, 1, -1, 1
   ],
-  "rotations": [0, 1, 2, 3, 0, 1, 2, 3],
+  "rotations": [1, 0, 1, 0, 1, 0, 1, 0],
   "size": 2,
 
   "category": "crafting",
